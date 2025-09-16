@@ -1,5 +1,3 @@
-# InuSoft AIO Video Downloader
-
 <p align="center">
   <img src="static/logo.png" alt="InuSoft Logo" width="200"/>
 </p>
