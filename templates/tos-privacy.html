@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service & Privacy Policy - InuSoft Highground-!!</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ubuntu': ['"Ubuntu Mono"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '4px 4px 0px #333',
+                        'btn': '3px 3px 0px black',
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#10B981',
+                        'accent': '#F59E0B',
+                        'tiktok-pink': '#FF0050',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .policy-section {
+            margin-bottom: 2rem;
+        }
+        
+        .policy-section h3 {
+            border-left: 4px solid #FF0050;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-list {
+            list-style-type: disc;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="relative font-ubuntu bg-gray-100 pt-5 pb-6 px-6 overflow-x-hidden flex flex-col min-h-screen">
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b-[2px] border-[#333] py-4 px-8 z-50 flex justify-between items-center">
+        <div class="flex items-center">
+            <span class="site-logo">
+                <i class="fas fa-dog"></i>
+            </span>
+            <h1 class="text-xl font-bold">InuSoft Highground-!!</h1>
+        </div>
+        <a href="/" class="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 transition-colors py-1 px-3 rounded-full text-sm">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+    </nav>
+
+    <main class="flex-grow mt-20">
+        <section class="pt-10 pb-2">
+            <div class="container mx-auto">
+                <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom">
+                    <h2 class="text-2xl font-bold mb-6 text-center">Terms of Service & Privacy Policy</h2>
+                    
+                    <div class="policy-section">
+                        <h3 class="text-xl font-bold text-tiktok-pink">Terms of Service</h3>
+                        <p class="mb-4">Dengan menggunakan layanan InuSoft Highground-!!, Anda menyetujui syarat dan ketentuan berikut:</p>
+                        
+                        <h4 class="font-bold mt-4 mb-2">1. Penggunaan Layanan</h4>
+                        <ul class="policy-list">
+                            <li>Layanan ini hanya ditujukan untuk mengunduh konten TikTok untuk keperluan pribadi dan non-komersial.</li>
+                            <li>Dilarang menggunakan layanan ini untuk kegiatan ilegal atau melanggar hak cipta.</li>
+                            <li>Anda bertanggung jawab penuh atas konten yang Anda unduh dan bagaimana Anda menggunakannya.</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mt-4 mb-2">2. Batasan Penggunaan</h4>
+                        <ul class="policy-list">
+                            <li>Layanan ini tidak boleh digunakan untuk mengunduh konten yang melanggar hak cipta tanpa izin.</li>
+                            <li>Dilarang menggunakan layanan ini untuk mengunduh konten yang mengandung materi tidak pantas, kekerasan, atau melanggar hukum.</li>
+                            <li>Kami berhak membatasi atau menghentikan akses Anda jika dideteksi penyalahgunaan layanan.</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mt-4 mb-2">3. Penyangkalan</h4>
+                        <ul class="policy-list">
+                            <li>Layanan disediakan "sebagaimana adanya" tanpa jaminan apa pun.</li>
+                            <li>Kami tidak bertanggung jawab atas konten yang diunduh melalui layanan ini.</li>
+                            <li>Kami tidak menjamin ketersediaan atau keandalan layanan secara terus-menerus.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h3 class="text-xl font-bold text-tiktok-pink">Privacy Policy</h3>
+                        <p class="mb-4">Kami menghargai privasi Anda dan berkomitmen untuk melindungi informasi pribadi Anda:</p>
+                        
+                        <h4 class="font-bold mt-4 mb-2">1. Informasi yang Kami Kumpulkan</h4>
+                        <ul class="policy-list">
+                            <li>Kami hanya mengumpulkan URL TikTok yang Anda berikan untuk diproses.</li>
+                            <li>Kami tidak menyimpan video yang Anda unduh di server kami.</li>
+                            <li>Kami dapat mengumpulkan informasi penggunaan anonim untuk meningkatkan layanan.</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mt-4 mb-2">2. Penggunaan Informasi</h4>
+                        <ul class="policy-list">
+                            <li>URL yang Anda berikan hanya digunakan untuk memproses permintaan download.</li>
+                            <li>Kami tidak menjual, memperdagangkan, atau mentransfer informasi Anda kepada pihak ketiga.</li>
+                            <li>Informasi penggunaan anonim digunakan untuk analitik dan pengembangan layanan.</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mt-4 mb-2">3. Keamanan Data</h4>
+                        <ul class="policy-list">
+                            <li>Kami menerapkan tindakan keamanan yang wajar untuk melindungi informasi Anda.</li>
+                            <li>Proses download dilakukan melalui koneksi terenkripsi (HTTPS).</li>
+                            <li>Video yang diunduh tidak disimpan secara permanen di server kami.</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mt-4 mb-2">4. Cookie</h4>
+                        <ul class="policy-list">
+                            <li>Kami dapat menggunakan cookie untuk meningkatkan pengalaman pengguna.</li>
+                            <li>Cookie digunakan untuk mengingat preferensi dan menyediakan fitur yang lebih personal.</li>
+                            <li>Anda dapat menonaktifkan cookie melalui pengaturan browser Anda.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h3 class="text-xl font-bold text-tiktok-pink">Kebijakan Hak Cipta</h3>
+                        <p class="mb-4">Kami menghormati hak kekayaan intelektual dan mengharapkan pengguna melakukan hal yang sama:</p>
+                        
+                        <ul class="policy-list">
+                            <li>Layanan ini hanya untuk keperluan pribadi dan non-komersial.</li>
+                            <li>Anda harus mematuhi ketentuan hak cipta TikTok dan pemilik konten asli.</li>
+                            <li>Dilarang menggunakan konten yang diunduh untuk tujuan komersial tanpa izin pemegang hak cipta.</li>
+                            <li>Jika Anda adalah pemilik hak cipta dan ingin menghapus konten, silakan hubungi kami.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h3 class="text-xl font-bold text-tiktok-pink">Perubahan Kebijakan</h3>
+                        <p class="mb-4">Kami dapat memperbarui Kebijakan Privasi dan Syarat Layanan ini dari waktu ke waktu. Perubahan akan diberitahukan melalui pembaruan pada halaman ini. Dengan terus menggunakan layanan kami setelah perubahan tersebut, Anda dianggap menerima perubahan tersebut.</p>
+                        
+                        <p>Kebijakan ini terakhir diperbarui pada 15 September 2024.</p>
+                    </div>
+                    
+                    <div class="policy-section">
+                        <h3 class="text-xl font-bold text-tiktok-pink">Kontak</h3>
+                        <p class="mb-4">Jika Anda memiliki pertanyaan tentang Syarat Layanan atau Kebijakan Privasi ini, silakan hubungi kami melalui:</p>
+                        
+                        <ul class="policy-list">
+                            <li>Email: privacy@InuSoft.my.id</li>
+                            <li>Twitter: @InuSoft.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 rounded-sm text-white py-6 mt-10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          
+          <div class="mb-4 md:mb-0">
+            <h4 class="text-xl font-bold">InuSoft Highground-!!</h4>
+            <p class="text-gray-400 text-sm mt-1">© 2025 All rights reserved.</p>
+          </div>
+    
+          <div class="flex flex-col items-center md:items-end gap-2">
+            <div class="flex gap-4">
+              <a href="https://github.com/purrbits" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://instagram.com/sennhndra" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+            </div>
+            <a href="/terms-of-service" class="text-gray-400 hover:text-white transition-colors text-sm">
+              Terms & Privacy
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary opacity-0 text-white w-12 h-12 rounded-full flex items-center justify-center border-[2px] border-[#333] shadow-btn hover:bg-blue-700 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Back to top button functionality
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (backToTopButton && window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0');
+            } else if (backToTopButton) {
+                backToTopButton.classList.add('opacity-0');
+            }
+        });
+        
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InuSoft Highground-!!</title>
+    <meta name="description" content="InuSoft Highground menyediakan layanan download video gratis dari YouTube, TikTok, Instagram, Facebook, dan banyak platform lainnya dengan kecepatan tinggi serta pilihan kualitas terbaik.">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ubuntu': ['"Ubuntu Mono"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '4px 4px 0px #333',
+                        'btn': '3px 3px 0px black',
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#10B981',
+                        'accent': '#F59E0B',
+                        'tiktok-pink': '#FF0050',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 0.25rem;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .bg-button-pink {
+            background-color: #FF0050;
+        }
+        
+        .hover\:bg-red-600:hover {
+            background-color: #dc2626;
+        }
+        
+        .bg-gray-400 {
+            background-color: #9ca3af;
+        }
+        
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        
+        .cursor-not-allowed {
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="relative font-ubuntu bg-gray-100 pt-5 pb-6 px-6 overflow-x-hidden flex flex-col min-h-screen">
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b-[2px] border-[#333] py-4 px-8 z-50 flex justify-between items-center">
+        <div class="flex items-center">
+            <span class="site-logo">
+                <i class="fas fa-dog"></i>
+            </span>
+            <h1 class="text-xl font-bold">InuSoft Highground-!!</h1>
+        </div>
+        <a href="https://github.com/purrbits" class="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 transition-colors py-1 px-3 rounded-full text-sm" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </nav>
+
+    <main class="flex-grow mt-20">
+        <section id="downloader" class="pt-10 pb-2">
+            <div class="container mx-auto">
+                <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom">
+                    <h4 class="mb-4 text-2xl font-bold text-center">All in One Video Downloader</h4>
+                    <p class="text-gray-600 text-center mb-6">Unduh video TikTok, Instagram, & Facebook tanpa watermark dengan mudah dan cepat</p>
+                    
+                    <form id="downloadForm" class="mb-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input type="text" id="urlInput" placeholder="https://vm.tiktok.com/..." 
+                                class="flex-grow p-3 border-[2px] border-[#333] rounded-sm focus:outline-none focus:border-tiktok-pink" required>
+                            <button type="submit" class="bg-button-pink text-white py-3 px-6 rounded-sm border-[2px] border-[#333] shadow-btn hover:bg-red-600 transition-colors flex items-center justify-center gap-2">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="loading" class="hidden flex-col items-center justify-center py-8">
+                        <div class="w-16 h-16 border-4 border-tiktok-pink border-t-transparent rounded-full animate-spin mb-4"></div>
+                        <p class="text-gray-600">Sedang mengunduh video...</p>
+                    </div>
+                    
+                    <div id="errorMsg" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6"></div>
+                    
+                    <div id="result" class="hidden">
+                        <h5 class="font-bold text-lg mb-4 text-center">Video Berhasil Diunduh!</h5>
+                        
+                        <div class="video-container mb-6 bg-black">
+                            <video id="videoPlayer" controls>
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        <div class="bg-gray-100 p-4 rounded-sm border-[2px] border-gray-300 mb-6">
+                            <h6 class="font-bold mb-2">Informasi Video</h6>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm"><span class="font-bold">Author:</span> <span id="videoAuthor">-</span></p>
+                                    <p class="text-sm"><span class="font-bold">Durasi:</span> <span id="videoDuration">-</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm"><span class="font-bold">Likes:</span> <span id="videoLikes">-</span></p>
+                                    <p class="text-sm"><span class="font-bold">Views:</span> <span id="videoViews">-</span></p>
+                                    <p class="text-sm"><span class="font-bold">Downloads:</span> <span id="videoDownloads">-</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                            <a id="downloadBtn" class="bg-button-pink text-white py-2 px-6 rounded-sm border-[2px] border-[#333] shadow-btn hover:bg-red-600 transition-colors flex items-center justify-center gap-2">
+                                <i class="fas fa-download"></i> Simpan Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="how-to-use" class="pt-10 pb-2">
+            <div class="container mx-auto">
+                <h4 class="mb-8 text-center text-2xl font-bold">
+                    <span class="border-b-4 border-primary pb-1">Cara Menggunakan</span>
+                </h4>
+                <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                                <span>1</span>
+                            </div>
+                            <h5 class="font-bold mb-2">Salin Link</h5>
+                            <p class="text-sm">Salin link video TikTok, Instagram, atau Facebook</p>
+                        </div>
+                        
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                                <span>2</span>
+                            </div>
+                            <h5 class="font-bold mb-2">Tempel Link</h5>
+                            <p class="text-sm">Tempel link pada form di atas dan klik Download</p>
+                        </div>
+                        
+                        <div class="text-center p-4">
+                            <div class="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                                <span>3</span>
+                            </div>
+                            <h5 class="font-bold mb-2">Unduh Video</h5>
+                            <p class="text-sm">Tunggu sebentar dan video siap diunduh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features" class="pt-10 pb-2">
+            <div class="container mx-auto">
+                <h4 class="mb-8 text-center text-2xl font-bold">
+                    <span class="border-b-4 border-tiktok-pink pb-1">Fitur Unggulan</span>
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-primary text-xl mr-4">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h5 class="font-bold text-lg">Cepat dan Efisien</h5>
+                        </div>
+                        <p class="text-gray-600">Proses unduh video hanya membutuhkan waktu beberapa detik saja</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-secondary text-xl mr-4">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5 class="font-bold text-lg">Tanpa Watermark</h5>
+                        </div>
+                        <p class="text-gray-600">Video yang diunduh bebas dari watermark membandel</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-tiktok-pink text-xl mr-4">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h5 class="font-bold text-lg">Responsif</h5>
+                        </div>
+                        <p class="text-gray-600">Dapat diakses dari berbagai perangkat termasuk smartphone</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-sm p-6 border-[2px] border-[#333] shadow-custom flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-accent text-xl mr-4">
+                                <i class="fas fa-lock-open"></i>
+                            </div>
+                            <h5 class="font-bold text-lg">Gratis</h5>
+                        </div>
+                        <p class="text-gray-600">Layanan ini sepenuhnya gratis tanpa biaya tersembunyi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 rounded-sm text-white py-6 mt-10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          
+          <div class="mb-4 md:mb-0">
+            <h4 class="text-xl font-bold">InuSoft Highground-!!</h4>
+            <p class="text-gray-400 text-sm mt-1">© 2025 All rights reserved.</p>
+          </div>
+    
+          <div class="flex flex-col items-center md:items-end gap-2">
+            <div class="flex gap-4">
+              <a href="https://github.com/purrbits" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://instagram.com/sennhndra" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+            </div>
+            <a href="/terms-of-service" class="text-gray-400 hover:text-white transition-colors text-sm">
+              Terms & Privacy
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary opacity-0 text-white w-12 h-12 rounded-full flex items-center justify-center border-[2px] border-[#333] shadow-btn hover:bg-blue-700 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
